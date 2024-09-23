@@ -1,29 +1,5 @@
-import { test, test2 } from "routes";
+import server from "./website";
 
-import express from "express";
+const start = new server();
 
-const application = express();
-
-const port = process.env.PORT || 8443;
-
-export class server {
-
-    private GETroutes (): void {
-
-
-
-    };
-
-    private POSTroutes (): void {
-
-        
-
-    };
-
-    public listen (): void {
-
-
-
-    };
-
-};
+start.listen();

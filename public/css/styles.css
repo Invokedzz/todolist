@@ -43,3 +43,30 @@ button {
 button:hover {
     background-color: #215a88;
 }
+
+.confirmation-container {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px;
+    width: 100%;
+    text-align: center;
+    margin: auto;
+    margin-top: 10%;
+}
+
+.confirmation-link {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.confirmation-link a {
+    color: #007acc;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.confirmation-link a:hover {
+    text-decoration: underline;
+}

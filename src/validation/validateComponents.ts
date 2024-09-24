@@ -1,6 +1,6 @@
 import { body } from "express-validator";
 
-export const name = [
+export const verifyName = [
 
     body('name')
 
@@ -14,7 +14,7 @@ export const name = [
 
 ];
 
-export const task = [
+export const verifyTask = [
 
     body('task')
 
@@ -28,7 +28,7 @@ export const task = [
 
 ];
 
-export const date = [
+export const verifyDate = [
 
     body('date')
 

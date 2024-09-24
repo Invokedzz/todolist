@@ -8,7 +8,7 @@ import path from "path";
 
 import { engine } from "express-handlebars";
 
-import { name, task, date } from "./validation/validateComponents";
+import { verifyName, verifyTask, verifyDate } from "./validation/validateComponents";
 
 import { analyzeComponents, sendComponents } from "./validation/postValidation";
 

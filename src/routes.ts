@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 
 export const test = (request: Request, response: Response): void => {
 
-    response.send("Testing...");
+    response.render('home');
 
 };
 

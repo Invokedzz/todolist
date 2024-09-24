@@ -14,13 +14,12 @@ const port = process.env.PORT || 3000;
 application.engine('handlebars', engine({
 
     defaultLayout: 'main',
-    partialsDir: path.join(__dirname + '../views/partials'),
 
 }));
 
 application.set('view engine', 'handlebars');
 
-application.set('views', path.join(__dirname, '../views'));
+application.set('views', path.join(__dirname, './views'));
 
 export class server {
 

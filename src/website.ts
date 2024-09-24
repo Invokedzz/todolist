@@ -1,6 +1,6 @@
 import rateLimit from "express-rate-limit";
 
-import { mainpage, test } from "./routes"; 
+import { mainpage, mainpagePOST } from "./routes"; 
 
 import express from "express";
 
@@ -9,8 +9,6 @@ import path from "path";
 import { engine } from "express-handlebars";
 
 import { verifyName, verifyTask, verifyDate } from "./validation/validateComponents";
-
-import { analyzeComponents, sendComponents } from "./validation/postValidation";
 
 const application = express();
 
@@ -58,15 +56,14 @@ export class server {
 
     private GETroutes (): void {
 
-        application.get('/', mainpage);
+        application.get('/', verifyName, verifyDate, verifyTask, mainpage);
 
-        application.get('/test', test);
 
     };
 
     private POSTroutes (): void {
 
-
+        application.post('/sendinformations', mainpagePOST);
 
     };
 
@@ -77,6 +74,8 @@ export class server {
         this.expressSettings();
 
         this.GETroutes();
+
+        this.POSTroutes();
 
         application.listen(port, (): void => {
 

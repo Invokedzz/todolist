@@ -1,4 +1,5 @@
 import rateLimit from "express-rate-limit";
+
 import { mainpage } from "./routes"; 
 
 import express from "express";
@@ -6,6 +7,10 @@ import express from "express";
 import path from "path";
 
 import { engine } from "express-handlebars";
+
+import { name, task, date } from "./validation/validateComponents";
+
+import { analyzeComponents, sendComponents } from "./validation/postValidation";
 
 const application = express();
 

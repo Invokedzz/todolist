@@ -1,13 +1,9 @@
 import { Request, Response } from 'express';
 
-export const test = (request: Request, response: Response): void => {
+import { mainpagemiddleware } from "./middlewares";
 
-    response.render('home');
+export const mainpage = (request: Request, response: Response): void => {
 
-};
-
-export const test2 = (request: Request, response: Response): void => {
-
-    response.send("Testing 2...");
+    mainpagemiddleware(request, response);
 
 };

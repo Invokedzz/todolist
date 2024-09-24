@@ -1,5 +1,5 @@
 import rateLimit from "express-rate-limit";
-import { test, test2 } from "./routes"; 
+import { mainpage } from "./routes"; 
 
 import express from "express";
 
@@ -53,9 +53,7 @@ export class server {
 
     private GETroutes (): void {
 
-        application.get('/', test);
-
-        application.get('/test', test2);
+        application.get('/', mainpage);
 
     };
 

@@ -56,7 +56,7 @@ export class server {
 
     private GETroutes (): void {
 
-        application.get('/', verifyName, verifyDate, verifyTask, mainpage);
+        application.get('/', mainpage);
 
 
     };

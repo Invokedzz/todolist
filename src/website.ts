@@ -60,11 +60,15 @@ export class server {
 
         application.get('/viewtasks', viewDatabasetasks);
 
+        application.get('/edittask/:id', );
+
     };
 
     private POSTroutes (): void {
 
         application.post('/sendinformations', mainpagePOST);
+
+        application.post('/editsuccess/:id', );
 
         application.post('/deletetask/:id', deletetask);
 

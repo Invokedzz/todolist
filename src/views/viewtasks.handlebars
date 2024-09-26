@@ -1,15 +1,17 @@
     <div class="container">
         <h1>My Todolist</h1>
         <div class="input-area">
+
         <form action="/sendinformations" method="POST">
+
 
             {{#each tasks}}
 
             <div class="tasks">
 
-                <p>- {{ name }}</p>
+                <p>- Name: {{ name }}</p>
 
-               <p> {{ task }}</p>
+               <p>- Task: {{ task }}</p>
 
                <form action="/edittask/{{ id }} ">
                

@@ -1,6 +1,6 @@
 import rateLimit from "express-rate-limit";
 
-import { mainpage, mainpagePOST, viewDatabasetasks, deletetask } from "./routes"; 
+import { mainpage, mainpagePOST, viewDatabasetasks, deletetask, getEdit, postEdit} from "./routes"; 
 
 import express from "express";
 
@@ -60,7 +60,7 @@ export class server {
 
         application.get('/viewtasks', viewDatabasetasks);
 
-        application.get('/edittask/:id', );
+        application.get('/edittask/:id', getEdit);
 
     };
 
@@ -68,7 +68,7 @@ export class server {
 
         application.post('/sendinformations', mainpagePOST);
 
-        application.post('/editsuccess/:id', );
+        application.post('/editsuccess/:id', postEdit);
 
         application.post('/deletetask/:id', deletetask);
 

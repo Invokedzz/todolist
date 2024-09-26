@@ -16,11 +16,8 @@ export function analyzeComponents (
 
     name: string,
     task: string,
-    date: string,
 
 ): void {
-
-    if (!validator.isDate(date)) throw new Error ("Insert a valid date");
 
     if (!name && !task) throw new Error ("Name and task are required");
 

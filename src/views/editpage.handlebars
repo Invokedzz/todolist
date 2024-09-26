@@ -3,6 +3,9 @@
         <div class="input-area">
         <a href="/viewtasks">Return</a>
 
+
+        {{#each results}}
+
         <form action="/editsuccess/{{ id }}" method="POST">
 
             <input type="text" id="name" name="name" placeholder="Name" value="{{ name }}" required>
@@ -11,6 +14,9 @@
             <button type="submit">Edit</button>
 
         </form>
-        
+
+        {{/each}}
+
+
         </div>
     </div>

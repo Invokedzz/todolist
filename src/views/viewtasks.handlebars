@@ -2,18 +2,16 @@
         <h1>My Todolist</h1>
         <div class="input-area">
 
-        <form action="/sendinformations" method="POST">
-
+            <div class="tasks">
 
             {{#each tasks}}
-
-            <div class="tasks">
 
                 <p>- Name: {{ name }}</p>
 
                <p>- Task: {{ task }}</p>
 
-               <form action="/edittask/{{ id }} ">
+
+                <form action="/edittask/{{ id }}" method="GET">
                
                <button type="submit" class="todobtn">Edit</button>
                
@@ -25,17 +23,16 @@
                
                </form>
 
+
             {{else}}
 
             <p>No tasks found. Add some!</p>
 
             <a href="/">Create tasks</a>
 
-            </div>
-
             {{/each}}
 
-        </form>
+            </div>
 
         </div>
     </div>

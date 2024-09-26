@@ -44,8 +44,27 @@ export async function gatherdatabaseinformation (request: Request, response: Res
         const results = await database.query(`SELECT * FROM public."todoTABLE"`);
 
         const tasks = results.rows;
-        
+
         response.render("viewtasks", { tasks });
+
+    } catch (error) {
+
+        console.error("Something went wrong while connecting with the database: ", error);
+        throw new Error("Please, try again.");
+
+    };
+
+};
+
+export async function deletetaskmethod (request: Request, response: Response): Promise <void> {
+
+    const id = request.params.id;
+    
+    try {
+
+        await database.query(`DELETE FROM public."todoTABLE" WHERE id = $1`, [id]);
+
+        response.redirect("/viewtasks");
 
     } catch (error) {
 

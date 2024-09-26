@@ -70,3 +70,15 @@ button:hover {
 .confirmation-link a:hover {
     text-decoration: underline;
 }
+
+.tasks {
+
+    display: flex;
+
+
+}
+
+.tasks p {
+    margin: auto;
+    margin-top: 20px;
+}

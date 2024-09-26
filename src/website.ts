@@ -1,6 +1,6 @@
 import rateLimit from "express-rate-limit";
 
-import { mainpage, mainpagePOST } from "./routes"; 
+import { mainpage, mainpagePOST, viewDatabasetasks } from "./routes"; 
 
 import express from "express";
 
@@ -56,8 +56,9 @@ export class server {
 
     private GETroutes (): void {
 
-        application.get('/', mainpage);
+        application.get('/', verifyName, verifyTask, verifyDate, mainpage);
 
+        application.get('/viewtasks', viewDatabasetasks);
 
     };
 

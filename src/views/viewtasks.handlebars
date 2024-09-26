@@ -1,0 +1,22 @@
+    <div class="container">
+        <h1>My Todolist</h1>
+        <div class="input-area">
+        <form action="/sendinformations" method="POST">
+
+            {{#each tasks}}
+
+            <div class="tasks">
+
+                {{ name }}
+
+                {{ task }}
+
+                {{ date }}
+
+            </div>
+
+            {{/each}}
+
+        </form>
+        </div>
+    </div>

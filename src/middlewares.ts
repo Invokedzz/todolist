@@ -10,11 +10,11 @@ export function mainpagemiddleware (request: Request, response: Response): void 
 
 export async function mainpagePOSTmiddleware (request: Request, response: Response): Promise <void> {
     
-    const name = request.query.name;
+    const name = request.body.name;
 
-    const task = request.query.task;
+    const task = request.body.task;
 
-    const date  = request.query.date;
+    const date  = request.body.date;
     
     try {
 

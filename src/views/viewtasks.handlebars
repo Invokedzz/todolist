@@ -11,6 +11,18 @@
 
                <p> {{ task }}</p>
 
+               <form action="/edittask/{{ id }} ">
+               
+               <button type="submit" class="todobtn">Edit</button>
+               
+               </form>
+
+               <form action="/deletetask/{{ id }}" method="POST">
+               
+               <button type="submit" class="todobtn">Delete</button>
+               
+               </form>
+
 
             </div>
 

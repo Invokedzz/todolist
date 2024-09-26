@@ -79,6 +79,13 @@ button:hover {
 }
 
 .tasks p {
+    font-size: 17px;
     margin: auto;
     margin-top: 20px;
+}
+
+.todobtn {
+    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-right: 5px;
 }

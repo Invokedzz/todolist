@@ -27,7 +27,7 @@ export async function mainpagePOSTmiddleware (request: Request, response: Respon
     } catch (error) {
 
         console.error("Something went wrong while connecting with the database: ", error);
-        throw new Error("Please, try again.");
+        throw new Error("Database error");
 
     };
 

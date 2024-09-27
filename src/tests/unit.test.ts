@@ -136,7 +136,7 @@ describe("mainpagePOST", (): void => {
 
     });
 
-    it ("Database success",  async (): Promise <void> => {
+    it ("Database success", async (): Promise <void> => {
 
         mockQuery.mockResolvedValue(undefined);
 
@@ -145,6 +145,14 @@ describe("mainpagePOST", (): void => {
         expect(mockQuery).toHaveBeenCalledWith(`INSERT INTO public."todoTABLE" (name, task, date) VALUES ($1, $2, $3)`, ["Hello", "Whazzup", "2024-09-27"]);
 
         expect(Response.render).toHaveBeenCalledWith("sendsuccess");
+
+    });
+
+    it ("Should return database error", async (): Promise <void> => {
+
+        mockQuery.mockRejectedValueOnce(new Error("Database error"));
+
+        await expect (mainpagePOSTmiddleware(Request as Request, Response as Response)).rejects.toThrow("Database error");
 
     });
 

@@ -239,3 +239,61 @@ describe("gatherdatabaseinformation", (): void => {
     });
 
 });
+
+describe("Testing database DELETE method", (): void => {
+
+    let Request: Partial <Request>;
+
+    let Response: Partial <Response>;
+
+    let mockQuery = jest.fn();
+
+    beforeEach((): void => {
+
+        Request = {
+
+            params: {
+            
+                id: "10",
+
+            },
+
+        };
+        
+        Response = {
+
+            redirect: jest.fn(),
+
+        };
+
+        (database.query as jest.Mock) = mockQuery;
+
+    });
+
+    afterEach((): void => {
+
+        jest.clearAllMocks();
+
+    });
+
+    it ("Should delete a task", async (): Promise <void> => {
+
+        mockQuery.mockResolvedValueOnce(undefined);
+
+        await deletetaskmethod(Request as Request, Response as Response);
+
+        expect(mockQuery).toHaveBeenCalledWith(`DELETE FROM public."todoTABLE" WHERE id = $1`, ["10"]);
+
+        expect(Response.redirect).toHaveBeenCalledWith("/viewtasks");
+
+    });
+
+    it ("Should return a database error", async (): Promise <void> => {
+
+        mockQuery.mockRejectedValueOnce(new Error("Please, try again."));
+
+        await expect (deletetaskmethod(Request as Request, Response as Response)).rejects.toThrow("Please, try again.");
+
+    });
+
+});

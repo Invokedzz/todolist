@@ -1,5 +1,11 @@
 import { verifyStrings, analyzeComponents, sendComponents } from "../validation/postValidation";
 
+import { Request, Response } from "express";
+
+import { database } from "../database/database";
+
+import { mainpagemiddleware, mainpagePOSTmiddleware, gatherdatabaseinformation, deletetaskmethod, editmethodGET, editmethodPOST } from "../middlewares";
+
 describe("Validating our primal strings length", (): void => {
 
     it ("Should return false", (): void => {
@@ -85,6 +91,60 @@ describe("Sending our components", (): void => {
         const otherResult = sendComponents(name, task);
 
         expect(otherResult).toBe(true);
+
+    });
+
+});
+
+describe("mainpagePOST", (): void => {
+
+    let Request: Partial <Request>;
+
+    let Response: Partial <Response>;
+
+    const mockQuery = jest.fn();
+
+    beforeEach((): void => {
+
+        Request = {
+          
+            body: {
+
+                name: "Hello",
+
+                task: "Whazzup",
+
+                date: "2024-09-27",
+
+            },
+
+        };
+
+        Response = {
+
+            render: jest.fn(),
+
+        };
+
+        (database.query as jest.Mock) = mockQuery;
+
+    });
+
+    afterEach((): void => {
+
+        jest.clearAllMocks();
+
+    });
+
+    it ("Database success",  async (): Promise <void> => {
+
+        mockQuery.mockResolvedValue(undefined);
+
+        await mainpagePOSTmiddleware(Request as Request, Response as Response);
+
+        expect(mockQuery).toHaveBeenCalledWith(`INSERT INTO public."todoTABLE" (name, task, date) VALUES ($1, $2, $3)`, ["Hello", "Whazzup", "2024-09-27"]);
+
+        expect(Response.render).toHaveBeenCalledWith("sendsuccess");
 
     });
 

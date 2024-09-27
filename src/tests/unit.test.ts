@@ -96,7 +96,39 @@ describe("Sending our components", (): void => {
 
 });
 
-describe("mainpagePOST", (): void => {
+describe("mainpagerender", (): void => {
+
+    let Request: Partial <Request>;
+
+    let Response: Partial <Response>;
+
+    beforeEach((): void => {
+
+        Response = {
+
+            render: jest.fn(),
+
+        };
+
+    });
+
+    afterEach((): void => {
+
+        jest.clearAllMocks();
+
+    });
+
+    it ("Should render the home page", (): void => {
+
+        mainpagemiddleware(Request as Request, Response as Response);
+
+        expect(Response.render).toHaveBeenCalledWith("home");
+
+    });
+
+});
+
+describe("mainpagePOSTmiddleware", (): void => {
 
     let Request: Partial <Request>;
 

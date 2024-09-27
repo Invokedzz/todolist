@@ -297,3 +297,69 @@ describe("Testing database DELETE method", (): void => {
     });
 
 });
+
+describe("Post edit method test", (): void => {
+
+    let Request: Partial <Request>;
+
+    let Response: Partial <Response>;
+
+    let mockQuery = jest.fn();
+
+    beforeEach((): void => {
+
+        Request = {
+
+            body: {
+
+                name: "Proto",
+
+                task: "Eat lunch",
+
+            },
+
+            params: {
+
+                id: "10",
+
+            },
+
+        };
+
+        Response = {
+
+            render: jest.fn(),
+
+        };
+
+        (database.query as jest.Mock) = mockQuery;
+
+    });
+
+    afterEach((): void => {
+
+        jest.clearAllMocks();
+
+    });
+
+    it ("Should post an edited task", async (): Promise <void> => {
+
+        mockQuery.mockResolvedValueOnce(undefined);
+
+        await editmethodPOST(Request as Request, Response as Response);
+
+        expect(mockQuery).toHaveBeenCalledWith(`UPDATE public."todoTABLE" SET name = $1, task = $2 WHERE id = $3`, ["Proto", "Eat lunch", "10"]);
+
+        expect(Response.render).toHaveBeenCalledWith("editsuccess");
+
+    });
+
+    it ("Should return a database error", async (): Promise <void> => {
+
+        mockQuery.mockRejectedValueOnce(new Error("Please, try again."));
+
+        await expect (editmethodPOST(Request as Request, Response as Response)).rejects.toThrow("Please, try again.");
+
+    });
+
+});

@@ -36,10 +36,12 @@ export function sendComponents (
     name: string,
     task: string,
 
-): void {
+): boolean {
 
-    if (!verifyStrings(name, 1, 50)) return;
+    if (!verifyStrings(name, 1, 50)) return false;
 
-    if (!verifyStrings(task, 4, 100)) return;
+    if (!verifyStrings(task, 4, 100)) return false;
+
+    return true;
 
 };

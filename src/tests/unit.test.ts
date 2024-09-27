@@ -1,6 +1,4 @@
-import { sendComponents } from "../validation/postValidation";
-
-import { verifyStrings } from "../validation/postValidation";
+import { verifyStrings, analyzeComponents, sendComponents } from "../validation/postValidation";
 
 describe("Validating our primal strings length", (): void => {
 
@@ -39,3 +37,56 @@ describe("Validating our primal strings length", (): void => {
     });
 
 });
+
+describe("Analyzing our components", (): void => {
+
+    it ("Should throw an error", (): void => {
+
+        const name = "";
+
+        const task = "";
+
+        expect(() => analyzeComponents(name, task)).toThrow();
+
+    });
+
+    it ("Should not throw an error", (): void => {
+
+        const name = "Hello";
+
+        const task = "Whazzup";
+
+        expect(() => analyzeComponents(name, task)).not.toThrow();
+
+    });
+
+});
+
+describe("Sending our components", (): void => {
+
+    it ("Should return something, I guess? (false)", (): void => {
+
+        const name = "";
+
+        const task = "";
+
+        const result = sendComponents(name, task);
+
+        expect(result).toBe(false);
+
+    });
+
+    it ("Should return something, I guess? (true)", (): void => {
+
+        const name = "something";
+
+        const task = "analysis";
+
+        const otherResult = sendComponents(name, task);
+
+        expect(otherResult).toBe(true);
+
+    });
+
+});
+

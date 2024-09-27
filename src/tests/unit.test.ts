@@ -190,3 +190,52 @@ describe("mainpagePOSTmiddleware", (): void => {
 
 });
 
+describe("gatherdatabaseinformation", (): void => {
+
+    let Request: Partial <Request>;
+
+    let Response: Partial <Response>;
+
+    const mockQuery = jest.fn();
+
+    beforeEach((): void => {
+
+        Response = {
+
+            render: jest.fn(),
+
+        };
+
+        (database.query as jest.Mock) = mockQuery;
+
+    });
+
+    afterEach((): void => {
+
+        jest.clearAllMocks();
+
+    });
+
+    it ("Should gather all elements", async (): Promise <void> => {
+
+        const mockTests = [{id: 1, name: "Hello", task: "Whazzup", date: "2024-09-27"}];
+
+        mockQuery.mockResolvedValueOnce({ rows: mockTests });
+
+        await gatherdatabaseinformation(Request as Request, Response as Response);
+
+        expect(mockQuery).toHaveBeenCalledWith(`SELECT * FROM public."todoTABLE"`);
+
+        expect(Response.render).toHaveBeenCalledWith("viewtasks", { tasks: mockTests });
+
+    });
+
+    it ("Should return a database error", async (): Promise <void> => {
+
+        mockQuery.mockRejectedValueOnce(new Error("Please, try again."));
+
+        await expect (gatherdatabaseinformation(Request as Request, Response as Response)).rejects.toThrow("Please, try again.");
+
+    });
+
+});

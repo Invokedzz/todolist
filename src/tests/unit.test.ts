@@ -363,3 +363,63 @@ describe("Post edit method test", (): void => {
     });
 
 });
+
+describe("Get edit method test", (): void => {
+
+    let Request: Partial <Request>;
+
+    let Response: Partial <Response>;
+
+    let mockQuery = jest.fn();
+
+    beforeEach((): void => {
+
+        Request = {
+
+            params: {
+
+                id: "10",
+
+            },
+
+        };
+
+        Response = {
+
+            render: jest.fn(),
+
+        };
+
+        (database.query as jest.Mock) = mockQuery;
+
+    });
+
+    afterEach((): void => {
+
+        jest.clearAllMocks();
+
+    });
+
+    it ("Should return the get method alongside the database", async (): Promise <void> => {
+
+        const mockTests = [{id: 10, name: "Protos", task: "Eat lunch"}];
+
+        mockQuery.mockResolvedValueOnce({ rows: mockTests });
+
+        await editmethodGET(Request as Request, Response as Response);
+
+        expect(mockQuery).toHaveBeenCalledWith(`SELECT * FROM public."todoTABLE" WHERE id = $1`, ["10"]);
+
+        expect(Response.render).toHaveBeenCalledWith("editpage", { results: mockTests });
+
+    });
+
+    it ("Should return a database error", async (): Promise <void> => {
+
+        mockQuery.mockRejectedValueOnce(new Error("Please, try again."));
+
+        await expect (editmethodGET(Request as Request, Response as Response)).rejects.toThrow("Please, try again.");
+
+    });
+
+});

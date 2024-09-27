@@ -1,19 +1,40 @@
 import { sendComponents } from "../validation/postValidation";
 
-describe("Sending informations - expect nothing", (): void => {
+import { verifyStrings } from "../validation/postValidation";
 
-    it ("When we have empty strings", (): void => {
+describe("Validating our primal strings length", (): void => {
 
-        const name = "";
-        const task = "";
+    it ("Should return false", (): void => {
+
+        const value = "";
+
+        const min = 1;
+
+        const max = 50;
 
         const ourSpy = jest.spyOn(global.console, "log");
 
-        sendComponents(name, task);
+        const result = verifyStrings(value, min, max);
 
-        expect(ourSpy).not.toHaveBeenCalled();
+        expect(ourSpy).toHaveBeenCalledWith("The string is too short or too long");
+
+        expect(result).toBe(false);
 
         ourSpy.mockRestore();
+
+    });
+
+    it ("Should return true", (): void => {
+
+        const value = "Hm";
+
+        const min = 1;
+
+        const max = 50;
+
+        const resultTrue = verifyStrings(value, min, max);
+
+        expect(resultTrue).toBe(true);
 
     });
 

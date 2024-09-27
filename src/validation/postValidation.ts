@@ -1,6 +1,6 @@
 import validator from "validator";
 
-function verifyStrings (
+export function verifyStrings (
 
     value: string,
     min: number,
@@ -8,7 +8,15 @@ function verifyStrings (
 
 ): boolean {
 
-    return value.length < min && value.length > max;
+    if (value.length < min || value.length > max) {
+        
+        console.log("The string is too short or too long");
+        return false;
+
+    };
+
+
+    return true;
 
 };
 

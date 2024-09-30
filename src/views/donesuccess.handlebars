@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="/css/styles.css">
+
+    <div class="confirmation-container">
+
+        <h2>Completed tasks</h2>
+        <p>Tasks that you've already completed, and wanted to save them :)</p>
+
+        {{#each results}}
+
+
+        <p class="succeed">Completed by: {{ name }}</p>
+
+        <p class="succeed">Task: {{ task }}</p>
+
+        {{/each}}
+
+        <a href="/">Return</a>
+
+    </div>

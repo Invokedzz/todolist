@@ -134,7 +134,15 @@ export async function donetaskGET (request: Request, response: Response): Promis
 
 export async function donetaskPOST (request: Request, response: Response): Promise <void> {
 
+    const id = request.params.id;
+    
     try {
+
+        const completedElements = await database.query(`SELECT * FROM public."todoTABLE" WHERE id = $1`, [id]);
+
+        const results = completedElements.rows;
+
+        response.render("donesuccess", { results });
 
     } catch (error) {
 

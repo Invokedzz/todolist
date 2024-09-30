@@ -126,3 +126,7 @@ button:hover {
 .submit {
     margin-bottom: 10px;
 }
+
+.succeed {
+    color: rgb(23, 153, 23);
+}

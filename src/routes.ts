@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import { mainpagemiddleware, mainpagePOSTmiddleware, gatherdatabaseinformation, deletetaskmethod, editmethodGET, editmethodPOST } from "./middlewares";
+import { mainpagemiddleware, mainpagePOSTmiddleware, gatherdatabaseinformation, deletetaskmethod, editmethodGET, editmethodPOST, donetaskGET, donetaskPOST } from "./middlewares";
 
 export const mainpage = (request: Request, response: Response): void => {
 
@@ -35,5 +35,17 @@ export const getEdit = async (request: Request, response: Response): Promise <vo
 export const postEdit = async (request: Request, response: Response): Promise <void> => {
 
     await editmethodPOST(request, response);
+
+};
+
+export const gettaskMiddleware = async (request: Request, response: Response): Promise <void> => {
+
+    await donetaskGET(request, response);
+
+};
+
+export const posttaskMiddleware = async (request: Request, response: Response): Promise <void> => {
+
+    await donetaskPOST(request, response);
 
 };

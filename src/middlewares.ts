@@ -112,3 +112,15 @@ export async function deletetaskmethod (request: Request, response: Response): P
     };
 
 };
+
+export async function donetaskGET (request: Request, response: Response): Promise <void> {
+
+    response.render("donetasks");
+
+};
+
+export async function donetaskPOST (request: Request, response: Response): Promise <void> {
+
+
+
+};

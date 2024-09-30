@@ -1,6 +1,6 @@
 import rateLimit from "express-rate-limit";
 
-import { mainpage, mainpagePOST, viewDatabasetasks, deletetask, getEdit, postEdit, gettaskMiddleware, posttaskMiddleware} from "./routes"; 
+import { mainpage, mainpagePOST, viewDatabasetasks, deletetask, getEdit, postEdit, gettaskMiddleware, posttaskMiddleware, deletetaskMiddleware} from "./routes"; 
 
 import express from "express";
 
@@ -75,6 +75,8 @@ export class server {
         application.post('/deletetask/:id', deletetask);
 
         application.post('/completetask/:id', posttaskMiddleware);
+
+        application.post('/erasedtask/:id', deletetaskMiddleware);
 
     };
 

@@ -1,23 +1,28 @@
 <link rel="stylesheet" href="/css/styles.css">
 
     <div class="confirmation-container">
+
+        {{#each results}}
+
         <h2>Congratulations! The task was done successfully!</h2>
         <p>You can send it the information by clicking the button below, or just delete it</p>
 
         <div class="confirm-btn">
 
-            <form action="" method="POST">
+            <form action="/completetask/{{ id }}" method="POST">
 
             <button type="submit" class="submit">Submit</button>
 
             </form>
 
-            <form action="" method="POST">
+            <form action="/erasedtask/{{ id }}" method="POST">
 
             <button type="submit" id="erase">Delete</button>
 
             </form>
 
         </div>
+
+        {{/each}}
 
     </div>

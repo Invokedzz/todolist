@@ -115,12 +115,51 @@ export async function deletetaskmethod (request: Request, response: Response): P
 
 export async function donetaskGET (request: Request, response: Response): Promise <void> {
 
-    response.render("donetasks");
+    const id = request.params.id;
+
+    try {
+
+        const overall = await database.query(`SELECT * FROM public."todoTABLE" WHERE id = $1`, [id]);
+        const results = overall.rows;
+        response.render("donetasks", { results });
+
+    } catch (error) {
+
+        console.error("Something went wrong while connecting with the database: ", error);
+        throw new Error("Please, try again.");
+
+    };
 
 };
 
 export async function donetaskPOST (request: Request, response: Response): Promise <void> {
 
+    try {
 
+    } catch (error) {
+
+        console.error("Something went wrong while connecting with the database: ", error);
+        throw new Error("Please, try again.");
+
+    };
+
+};
+
+export async function deletetaskPOST (request: Request, response: Response): Promise <void> {
+
+    const id = request.params.id;
+
+    try {
+
+        await database.query(`DELETE FROM public."todoTABLE" WHERE id = $1`, [id]);
+
+        response.redirect("/viewtasks");
+
+    } catch (error) {
+
+        console.error("Something went wrong while connecting with the database: ", error);
+        throw new Error("Please, try again.");
+
+    };
 
 };

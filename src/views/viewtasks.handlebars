@@ -1,8 +1,6 @@
     <div class="container">
         <h1>My Todolist</h1>
 
-        <a href="/">Home</a>
-
         <div class="input-area">
 
             <div class="tasks">
@@ -13,19 +11,24 @@
 
                <p>- Task: {{ task }}</p>
 
+               <form action="">
+
+                <button type="submit" class="todobtn" id="niceone">Done</button>
+
+               </form>
+
 
                 <form action="/edittask/{{ id }}" method="GET">
                
-               <button type="submit" class="todobtn">Edit</button>
+               <button type="submit" class="todobtn">Edit </button>
                
                </form>
 
                <form action="/deletetask/{{ id }}" method="POST">
                
-               <button type="submit" class="todobtn">Delete</button>
+               <button type="submit" class="todobtn" id="erase">Erase</button>
                
                </form>
-
 
             {{else}}
 
@@ -36,6 +39,8 @@
             {{/each}}
 
             </div>
+
+            <a href="/" class="return">Return</a>
 
         </div>
     </div>

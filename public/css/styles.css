@@ -41,7 +41,7 @@ button {
 }
 
 button:hover {
-    background-color: #215a88;
+    background-color: #2971ac;
 }
 
 .confirmation-container {
@@ -74,17 +74,42 @@ button:hover {
 .tasks {
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 
 }
 
 .tasks p {
     font-size: 17px;
     margin: auto;
+    margin-right: 100px;
     margin-top: 20px;
 }
 
 .todobtn {
-    margin-top: 10px;
-    margin-left: 45%;
+    margin-top: 20px;
+    margin-left: 24%;
+    margin-right: 10px;
+    background-color: #007acc;
+}
+
+.return {
+    margin-top: 30px;
+}
+
+#erase {
+    background-color: rgb(201, 10, 10);
+}
+
+#erase:hover {
+    background-color: rgb(232, 8, 8);
+    transition: 0.6s all;
+}
+
+#niceone {
+    background-color: rgb(4, 224, 132);
+}
+
+#niceone:hover {
+    background-color: rgb(4, 197, 132);
+    transition: 0.6s all;
 }

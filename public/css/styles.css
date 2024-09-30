@@ -113,3 +113,16 @@ button:hover {
     background-color: rgb(4, 197, 132);
     transition: 0.6s all;
 }
+
+.confirm-btn {
+    display: flex;
+    margin-left: 35%;
+}
+
+.confirm-btn form {
+    margin-right: 10px;
+}
+
+.submit {
+    margin-bottom: 10px;
+}

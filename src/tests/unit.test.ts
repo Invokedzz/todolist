@@ -537,6 +537,10 @@ describe ("Done task post method test", (): void => {
 
     it ("Should return the try/catch error", async (): Promise <void> => {
 
+        mockQuery.mockRejectedValueOnce(new Error("Please, try again."));
+
+        await expect (donetaskPOST(Request as Request, Response as Response)).rejects.toThrow("Please, try again.");
+
     });
 
 });

@@ -4,7 +4,8 @@ import { Request, Response } from "express";
 
 import { database } from "../database/database";
 
-import { mainpagemiddleware, mainpagePOSTmiddleware, gatherdatabaseinformation, deletetaskmethod, editmethodGET, editmethodPOST } from "../middlewares";
+import { mainpagemiddleware, mainpagePOSTmiddleware, gatherdatabaseinformation, deletetaskmethod, editmethodGET, editmethodPOST, donetaskGET, donetaskPOST, deletetaskPOST } from "../middlewares";
+import { mock } from "node:test";
 
 describe("Validating our primal strings length", (): void => {
 
@@ -419,6 +420,122 @@ describe("Get edit method test", (): void => {
         mockQuery.mockRejectedValueOnce(new Error("Please, try again."));
 
         await expect (editmethodGET(Request as Request, Response as Response)).rejects.toThrow("Please, try again.");
+
+    });
+
+});
+
+describe ("Done task test method", (): void => {
+
+    let Request: Partial <Request>;
+
+    let Response: Partial <Response>;
+
+    const mockQuery = jest.fn();
+
+    beforeEach((): void => {
+
+        Request = {
+
+            params: {
+
+                id: "10",
+
+            },
+
+        };
+
+        Response = {
+
+            render: jest.fn(),
+
+        };
+
+        (database.query as jest.Mock) = mockQuery;
+
+    });
+
+    afterEach((): void => {
+
+        jest.clearAllMocks();
+
+    });
+
+    it ("Should return the information successfully", async (): Promise <void> => {
+
+        const results = [{name: "Protos", task: "Eat lunch"}];
+
+        mockQuery.mockResolvedValueOnce({ rows: results });
+
+        await donetaskGET(Request as Request, Response as Response);
+
+        expect(mockQuery).toHaveBeenCalledWith(`SELECT * FROM public."todoTABLE" WHERE id = $1`, ["10"]);
+
+        expect(Response.render).toHaveBeenCalledWith("donetasks", { results });
+
+    });
+
+    it ("Should return the try/catch error", async (): Promise <void> => {
+
+        mockQuery.mockRejectedValueOnce(new Error("Please, try again."));
+
+        await expect (donetaskGET(Request as Request, Response as Response)).rejects.toThrow("Please, try again.");
+
+    });
+
+});
+
+describe ("Done task post method test", (): void => {
+
+    let Request: Partial <Request>;
+
+    let Response: Partial <Response>;
+
+    const mockQuery = jest.fn();
+
+    beforeEach((): void => {
+
+        Request = {
+
+            params: {
+
+                id: "10",
+
+            },
+
+        };
+
+        Response = {
+
+            render: jest.fn(),
+
+        };
+
+        (database.query as jest.Mock) = mockQuery;
+
+    });
+
+    afterEach((): void => {
+
+        jest.clearAllMocks();
+
+    });
+
+    it ("Should return the information successfully", async (): Promise <void> => {
+
+        const results = [{name: "Protos", task: "Eat lunch"}];
+
+        mockQuery.mockResolvedValueOnce({ rows: results });
+
+        await donetaskPOST(Request as Request, Response as Response);
+
+        expect(mockQuery).toHaveBeenCalledWith(`SELECT * FROM public."todoTABLE" WHERE id = $1`, ["10"]);
+
+        expect(Response.render).toHaveBeenCalledWith("donesuccess", { results });
+
+    });
+
+    it ("Should return the try/catch error", async (): Promise <void> => {
 
     });
 
